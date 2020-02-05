@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 client.on('ready', message =>
 {
-    client.user.setPresence({ game: { name: '境界を操る程度の能力' }, status: 'idle' });  
+    client.user.setPresence({ game: { name: 'ヘルプ| is!help' }, status: 'idle' });  
     console.log('いしゅー');
 
     const ch_name = "issue-start";
@@ -12,7 +12,7 @@ client.on('ready', message =>
     {
         if (channel.name === ch_name) 
         {
-            channel.send("**再起動通知**\nいしゅー")
+            channel.send("**再起動通知**(global chat版)\nいしゅー")
             return;
         }
         return;
