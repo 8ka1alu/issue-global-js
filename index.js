@@ -4,15 +4,15 @@ const client = new Discord.Client();
 client.on('ready', message =>
 {
     client.user.setPresence({ game: { name: '境界を操る程度の能力' }, status: 'idle' });  
-    console.log('幻想郷は全てを受け入れる');
+    console.log('いしゅー');
 
-    const ch_name = "スキマ";
+    const ch_name = "issue-start";
 
     client.channels.forEach(channel =>
     {
         if (channel.name === ch_name) 
         {
-            channel.send("幻想郷は、全てを受け入れるのよ。それはそれは残酷な話ですわ。")
+            channel.send("**再起動通知**\nいしゅー")
             return;
         }
         return;
@@ -21,7 +21,7 @@ client.on('ready', message =>
 
 client.on('message', message =>
 {
-    if (message.channel.name === 'スキマ')
+    if (message.channel.name === 'issue-global')
     {
         if (message.author.bot) return;
         if (message.content.match(/discord.gg/)) 
@@ -43,7 +43,7 @@ client.on('message', message =>
                     .setColor(0x2C2F33)
                     .setFooter(message.guild.name, message.guild.iconURL)
                     .setTimestamp()
-                if (channel.name === 'スキマ')
+                if (channel.name === 'issue-global')
                 {
                     channel.send(embed)
                     return;
@@ -59,7 +59,7 @@ client.on('message', message =>
                     .setColor(0x2C2F33)
                     .setFooter(message.guild.name, message.guild.iconURL)
                     .setTimestamp()
-                if (channel.name === 'スキマ')
+                if (channel.name === 'issue-global')
                 {
                     channel.send(embed)
                     return;
