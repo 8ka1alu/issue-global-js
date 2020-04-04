@@ -29,6 +29,11 @@ client.on('message', message =>
             message.delete(100)
             return;
         }
+        if (talkedRecently.has(message.author.id)) 
+        {
+            message.channel.send("5秒間発言できません。-" + message.author)
+            return;
+        }
         if (message.attachments.size <= 0)
         {
             message.delete()
@@ -40,12 +45,17 @@ client.on('message', message =>
                 const embed = new Discord.RichEmbed()
                     .setAuthor(message.author.tag, message.author.avatarURL)
                     .setDescription(message.content)
-                    .setColor(0x2ecc71)
+                    .setColor(0x2C2F33)
                     .setFooter(message.guild.name, message.guild.iconURL)
                     .setTimestamp()
                 if (channel.name === 'issue-global')
                 {
                     channel.send(embed)
+                    talkedRecently.add(message.author.id);
+                    setTimeout(() => 
+                    {
+                        talkedRecently.delete(message.author.id); 
+                    }, 5000)
                     return;
                 }
                 return;
@@ -56,12 +66,17 @@ client.on('message', message =>
                     .setAuthor(message.author.tag, message.author.avatarURL)
                     .setImage(attachment.url)
                     .setDescription(attachment.url)
-                    .setColor(0x2ecc71)
+                    .setColor(0x2C2F33)
                     .setFooter(message.guild.name, message.guild.iconURL)
                     .setTimestamp()
                 if (channel.name === 'issue-global')
                 {
                     channel.send(embed)
+                    talkedRecently.add(message.author.id);
+                    setTimeout(() => 
+                    {
+                        talkedRecently.delete(message.author.id);
+                    }, 5000)
                     return;
                 }
                 return;
